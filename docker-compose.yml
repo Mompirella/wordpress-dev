@@ -39,7 +39,6 @@ services:
 
    phpmyadmin:
      image: phpmyadmin/phpmyadmin:latest
-     container_name: wordpress-phpmyadmin
      restart: always
      depends_on: 
        - db
