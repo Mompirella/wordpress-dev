@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+   db:
+     image: mysql:latest
+     volumes:
+       - ./db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: somewordpress
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: wordpress
+     logging: 
+       driver: json-file
+       options: 
+         max-size: '10m'
+         max-file: '10'
+
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     volumes:
+       - ./wp_content:/var/www/html/wp-content
+     ports:
+       - "8000:80"
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_NAME: wordpress
+     logging: 
+       driver: json-file
+       options: 
+         max-size: '10m'
+         max-file: '10'
+
+   phpmyadmin:
+     image: phpmyadmin/phpmyadmin:latest
+     container_name: wordpress-phpmyadmin
+     restart: always
+     depends_on: 
+       - db
+     ports:
+      - 8081:80
+     environment:
+       PMA_HOST: db
+       PMA_USER: wordpress
+       PMA_PASSWORD: wordpress
+     logging: 
+       driver: json-file
+       options: 
+         max-size: '10m'
+         max-file: '10'
+
+volumes: 
+  db_data: {}
+  wp_content: {}
+
