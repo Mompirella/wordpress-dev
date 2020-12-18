@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Wordpress-Dev Docker 👋</h1>
+<h1 align="center">Welcome to Wordpress-Dev Docker 🐱</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -21,6 +21,9 @@ docker-compose stop  // stops the dev env
 docker-compose rm    // removes the images
 docker-compose logs -f --tail 10 // logs
 ```
+
+Wordpress is under: [http://localhost:8000](http://localhost:8000)
+PhpMyAdmin is under: [http://localhost:8081](http://localhost:8081)
 
 ## Author
 
